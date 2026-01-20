@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Piyush Sharma | Product Development & Test Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
 <style>
@@ -12,594 +12,270 @@
        1. CORE VARIABLES & RESET
        ========================================= */
     :root {
-        /* Palette - Enterprise Professional */
-        --primary-dark: #0f172a;    /* Slate 900 */
-        --primary-blue: #0f62fe;    /* IBM/Enterprise Blue */
-        --electric-cyan: #06b6d4;   /* Cyan 500 - The "Arc Reactor" Glow */
-        --primary-light: #eff6ff;   
+        /* EXECUTIVE MODE (Standard) */
+        --bg-exec: #f8fafc;
+        --text-exec: #334155;
+        --sidebar-exec: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+        --card-bg-exec: #ffffff;
+        --primary-blue: #0f62fe;
         
-        --accent-gold: #d97706;     
-        
-        /* Gradients */
-        --sidebar-gradient: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
-        --active-tab-gradient: linear-gradient(90deg, rgba(15, 98, 254, 0.1) 0%, rgba(15, 98, 254, 0.0) 100%);
-
-        /* Text Colors */
-        --text-main: #1e293b;       
-        --text-body: #334155;       
-        --text-muted: #64748b;      
-        --text-light: #f8fafc;      
-
-        /* Shadows & Borders */
-        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        --border-subtle: #e2e8f0;   
-
-        /* Transitions */
-        --trans-fast: 0.2s ease;
-        --trans-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        --trans-speed: 0.5s ease-in-out;
     }
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html {
-        font-size: 16px;
-        scroll-behavior: smooth;
-    }
+    html { font-size: 16px; scroll-behavior: smooth; }
 
     body {
         font-family: 'Inter', sans-serif;
-        background-color: #f8fafc;
+        background-color: var(--bg-exec);
+        color: var(--text-exec);
+        line-height: 1.7; 
+        overflow-x: hidden;
+        transition: background-color var(--trans-speed);
+        -webkit-font-smoothing: antialiased; 
+        -moz-osx-font-smoothing: grayscale;
         background-image: 
             radial-gradient(circle at 10% 20%, rgba(15, 98, 254, 0.03) 0%, transparent 40%),
             radial-gradient(circle at 90% 80%, rgba(217, 119, 6, 0.03) 0%, transparent 40%);
         background-attachment: fixed;
-        color: var(--text-body);
-        line-height: 1.7; 
-        overflow-x: hidden;
     }
-
-    h1, h2, h3, h4 {
-        font-family: 'Playfair Display', serif;
-        color: var(--text-main);
-        line-height: 1.3;
-    }
-
-    p { margin-bottom: 1.25rem; }
-    strong { font-weight: 600; color: var(--text-main); }
 
     /* =========================================
-       2. LAYOUT STRUCTURE
+       2. LAYOUT
        ========================================= */
+    
     .app-container {
         display: flex;
-        max-width: 1440px; 
+        max-width: 1600px; 
         margin: 0 auto;
         min-height: 100vh;
         position: relative;
-        background: #fff;
+        background: var(--bg-exec);
         box-shadow: 0 0 50px rgba(0,0,0,0.05);
+        z-index: 10;
     }
 
-    /* LEFT SIDEBAR */
     .sidebar {
-        width: 340px;
-        background: var(--sidebar-gradient);
-        color: var(--text-light);
+        width: 320px;
+        background: var(--sidebar-exec);
+        color: #f8fafc;
         height: 100vh;
         position: sticky;
         top: 0;
         overflow-y: auto;
         flex-shrink: 0;
-        padding: 3rem 2rem;
-        z-index: 50;
+        padding: 3rem 1.5rem;
         display: flex;
         flex-direction: column;
     }
 
-    /* RIGHT CONTENT */
-    .content-area {
-        flex-grow: 1;
-        padding: 4rem 5rem;
-        background: #f8fafc;
-        min-width: 0;
-    }
-
-    /* =========================================
-       3. SIDEBAR COMPONENTS
-       ========================================= */
-    .profile-header {
-        text-align: center;
-        margin-bottom: 3rem;
-    }
-
-    /* --- WOW FACTOR: ARC REACTOR PULSE --- */
+    .profile-header { text-align: center; margin-bottom: 2rem; }
     .avatar-wrapper {
-        width: 120px;
-        height: 120px;
-        margin: 0 auto 1.5rem;
-        position: relative;
-        border-radius: 50%;
-        padding: 4px;
-        /* The Core */
-        background: #fff;
-        /* The Glow Rings */
-        box-shadow: 
-            0 0 0 2px rgba(6, 182, 212, 0.3),
-            0 0 20px rgba(6, 182, 212, 0.4);
-        animation: arcPulse 3s infinite ease-in-out;
+        width: 130px; height: 130px; margin: 0 auto 1.5rem;
+        border-radius: 50%; padding: 4px; background: #fff;
+        box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.3), 0 0 20px rgba(6, 182, 212, 0.4);
     }
-
-    @keyframes arcPulse {
-        0% { box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.3), 0 0 15px rgba(6, 182, 212, 0.2); }
-        50% { box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.5), 0 0 30px rgba(6, 182, 212, 0.6); }
-        100% { box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.3), 0 0 15px rgba(6, 182, 212, 0.2); }
-    }
-
-    .avatar-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 50%;
-        background: #fff;
-        position: relative;
-        z-index: 2;
-    }
-
-    .profile-name {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-        color: #fff;
-    }
-
-    .profile-role {
-        font-family: 'Inter', sans-serif;
-        font-size: 0.9rem;
-        color: #94a3b8; 
-        font-weight: 400;
-        margin-bottom: 1.5rem;
-        line-height: 1.4;
-    }
-
+    .avatar-img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .profile-name { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; color: #fff; }
+    .profile-role { font-size: 0.9rem; color: #94a3b8; font-weight: 400; margin-bottom: 1.5rem; }
     .highlight-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: rgba(15, 98, 254, 0.15); 
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
-        font-size: 0.8rem;
-        font-weight: 500;
-        border: 1px solid rgba(15, 98, 254, 0.3);
-        color: #60a5fa; 
-        font-family: 'Inter', sans-serif;
+        display: inline-flex; align-items: center; gap: 8px; background: rgba(15, 98, 254, 0.15); 
+        padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.8rem; font-weight: 500; border: 1px solid rgba(15, 98, 254, 0.3); color: #60a5fa;
     }
 
-    /* Navigation Tabs */
-    .nav-menu {
-        display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
-        margin-bottom: auto; 
-    }
-
+    .nav-menu { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: auto; }
     .nav-btn {
-        background: transparent;
-        border: none;
-        width: 100%;
-        text-align: left;
-        padding: 0.85rem 1rem;
-        color: #cbd5e1;
-        font-family: 'Inter', sans-serif;
-        font-size: 0.9rem;
-        font-weight: 500;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: var(--trans-fast);
-        display: flex;
-        align-items: center;
-        gap: 12px;
+        background: transparent; border: none; width: 100%; text-align: left; padding: 0.9rem 1rem; color: #cbd5e1;
+        font-size: 0.95rem; font-weight: 500; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.2s;
     }
+    .nav-btn:hover { background: rgba(255,255,255,0.05); color: #fff; }
+    .nav-btn.active { background: rgba(255,255,255,0.1); color: #fff; font-weight: 600; }
+    .nav-btn i { width: 20px; text-align: center; }
+    .nav-btn.active i { color: #60a5fa; }
 
-    .nav-btn i { width: 20px; text-align: center; font-size: 1rem; opacity: 0.7; }
+    .content-area { flex-grow: 1; padding: 4rem 5rem; }
     
-    .nav-btn:hover {
-        background: rgba(255,255,255,0.05);
-        color: #fff;
+    .tab-content { 
+        display: none; 
+        opacity: 0; 
+        animation: fadeIn 0.6s ease-out forwards; 
+        max-width: 1200px; 
+        width: 100%; 
     }
-    .nav-btn:hover i { opacity: 1; }
-
-    .nav-btn.active {
-        background: rgba(255,255,255,0.1);
-        color: #fff;
-        font-weight: 600;
-    }
-    .nav-btn.active i { color: #60a5fa; opacity: 1; }
-
-    /* Contact Footer */
-    .contact-footer {
-        margin-top: 3rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .contact-row {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-size: 0.85rem;
-        color: #94a3b8;
-        margin-bottom: 0.75rem;
-        font-family: 'Inter', sans-serif;
-    }
+    .tab-content.active { display: block; opacity: 1; } 
     
-    .contact-row i { width: 16px; text-align: center; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-    .copy-btn {
-        background: none;
-        border: none;
-        color: #60a5fa;
-        cursor: pointer;
-        font-size: 0.8rem;
-        margin-left: auto;
-        padding: 4px;
+    .card { 
+        background: #fff; border-radius: 16px; padding: 3.5rem; margin-bottom: 2.5rem; 
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; 
+        position: relative; overflow: hidden; 
+        transform: translateZ(0); /* Hardware Accel */
+        will-change: transform, box-shadow;
     }
-    .copy-btn:hover { color: #fff; }
-
-    /* =========================================
-       4. CONTENT AREA COMPONENTS
-       ========================================= */
-    .tab-content {
-        display: none;
-        opacity: 0;
-        animation: fadeIn 0.4s ease-out forwards;
-        max-width: 900px; /* Optimal reading width */
-    }
-    .tab-content.active { display: block; }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* --- WOW FACTOR: SPOTLIGHT CARDS --- */
-    .card {
-        background: #fff;
-        border-radius: 12px;
-        padding: 3rem;
-        margin-bottom: 2rem;
-        box-shadow: var(--shadow-sm);
-        border: 1px solid var(--border-subtle);
-        transition: box-shadow var(--trans-fast), transform var(--trans-fast);
-        position: relative;
-        overflow: hidden; /* For the spotlight */
-    }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
     
-    /* The Spotlight Glow Effect */
     .card::before {
-        content: "";
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        border-radius: 12px;
-        padding: 2px; /* Thickness of the border glow */
-        background: radial-gradient(
-            800px circle at var(--mouse-x) var(--mouse-y),
-            rgba(15, 98, 254, 0.2), /* Primary Blue Glow */
-            transparent 40%
-        );
-        -webkit-mask: 
-            linear-gradient(#fff 0 0) content-box, 
-            linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        opacity: 0;
-        transition: opacity 0.5s;
-        pointer-events: none;
-        z-index: 2;
+        content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 16px; padding: 2px;
+        background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(15, 98, 254, 0.2), transparent 40%);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity 0.5s; pointer-events: none; z-index: 2;
     }
+    .card:hover::before { opacity: 1; }
 
-    /* Inner Spotlight Wash */
-    .card::after {
-        content: "";
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        border-radius: 12px;
-        background: radial-gradient(
-            600px circle at var(--mouse-x) var(--mouse-y),
-            rgba(15, 98, 254, 0.04),
-            transparent 40%
-        );
-        opacity: 0;
-        transition: opacity 0.5s;
-        pointer-events: none;
-        z-index: 1;
-    }
-
-    .card:hover::before,
-    .card:hover::after {
-        opacity: 1;
-    }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 2.5rem; display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; color: #1e293b; }
+    .section-title i { color: var(--primary-blue); }
     
-    .card:hover {
-        box-shadow: var(--shadow-md);
-        transform: translateY(-2px);
-    }
-
-    .section-title {
-        font-size: 1.8rem;
-        margin-bottom: 2rem;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid var(--border-subtle);
-        position: relative;
-        z-index: 3;
-    }
+    .two-column-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
     
-    .section-title i { color: var(--primary-blue); font-size: 1.5rem; }
-
-    /* Metrics Grid */
-    .metrics-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 1.5rem;
+    /* --- INTERACTIVE TIMELINE STYLING --- */
+    .timeline-container { 
+        position: relative; 
+        padding-left: 3rem; 
         margin-top: 2rem;
-        position: relative;
-        z-index: 3;
+        padding-bottom: 15rem; 
+    }
+    
+    /* The Background Track */
+    .timeline-line-bg { 
+        position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: #e2e8f0; z-index: 1; 
+    }
+    
+    /* The Live Progress Line */
+    .timeline-line-progress { 
+        position: absolute; left: 0; top: 0; width: 2px; height: 100%; 
+        background: var(--primary-blue); z-index: 2; 
+        box-shadow: 0 0 10px rgba(15, 98, 254, 0.5);
+        transform-origin: top center; transform: scaleY(0); will-change: transform; 
     }
 
-    .metric-box {
-        background: #f8fafc;
-        padding: 1.5rem;
-        border-radius: 8px;
-        text-align: center;
-        border: 1px solid var(--border-subtle);
-        transition: var(--trans-fast);
+    /* Individual Nodes */
+    .timeline-node { 
+        position: relative; margin-bottom: 6rem; padding-left: 2rem; 
+        opacity: 0.5; transform: scale(0.98);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out; 
+        will-change: opacity, transform;
     }
-    .metric-box:hover {
+    .timeline-node.active-node { opacity: 1; transform: scale(1.02); }
+
+    .node-header { display: flex; flex-direction: column; margin-bottom: 1rem; }
+    .node-role { font-size: 1.4rem; font-weight: 700; color: #1e293b; font-family: 'Playfair Display', serif; }
+    .node-meta { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: 0.5rem; font-size: 0.95rem; color: var(--primary-blue); font-weight: 600; }
+    .node-time { color: #64748b; font-family: 'Inter', sans-serif; font-weight: 500; background: #e2e8f0; padding: 4px 10px; border-radius: 4px; font-size: 0.85rem; }
+
+    .node-content { font-size: 1rem; color: #475569; }
+    .node-section { margin-top: 1.5rem; }
+    .node-section h5 { 
+        font-size: 0.8rem; text-transform: uppercase; color: #94a3b8; 
+        margin-bottom: 0.75rem; letter-spacing: 1px; font-weight: 700;
+        display: flex; align-items: center; gap: 0.5rem;
+    }
+    .node-section h5::after { content: ''; flex-grow: 1; height: 1px; background: #e2e8f0; }
+    .node-list { list-style: none; padding: 0; }
+    .node-list li { position: relative; padding-left: 1.5rem; margin-bottom: 0.75rem; line-height: 1.6; }
+    .node-list li::before { content: '▹'; position: absolute; left: 0; color: var(--primary-blue); }
+
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+    .tech-tag { 
+        font-size: 0.75rem; background: #ffffff; color: #475569; 
+        padding: 4px 12px; border-radius: 20px; font-weight: 600; border: 1px solid #e2e8f0; transition: 0.2s;
+    }
+    .timeline-node.active-node .tech-tag:hover { border-color: var(--primary-blue); color: var(--primary-blue); }
+
+    /* --- SKILLS SPEC SHEET STYLING --- */
+    .spec-card {
+        background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; padding: 2rem; transition: 0.3s;
+        height: 100%; display: flex; flex-direction: column; transform: translateZ(0);
+    }
+    .spec-card:hover { background: #fff; border-color: var(--primary-blue); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
+
+    .spec-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid #e2e8f0; }
+    .spec-icon { font-size: 1.5rem; color: var(--primary-blue); background: #eff6ff; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 8px; }
+    .spec-title { font-size: 1.2rem; font-weight: 700; color: #1e293b; font-family: 'Playfair Display', serif; }
+    
+    .spec-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .spec-item { display: flex; flex-direction: column; gap: 0.25rem; }
+    .spec-name-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.95rem; font-weight: 600; color: #334155; }
+    .spec-bar-bg { height: 6px; width: 100%; background: #e2e8f0; border-radius: 3px; margin-top: 0.25rem; overflow: hidden; }
+    .spec-bar-fill { height: 100%; background: var(--primary-blue); border-radius: 3px; }
+    .spec-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.25rem; }
+    .spec-tag { font-size: 0.75rem; color: #64748b; background: #fff; border: 1px solid #cbd5e1; padding: 2px 8px; border-radius: 4px; }
+    
+    .spec-bullet-list { list-style: none; padding: 0; margin: 0; font-size: 0.9rem; color: #475569; }
+    .spec-bullet-list li { margin-bottom: 0.5rem; display: flex; align-items: flex-start; gap: 8px; }
+    .spec-bullet-list li::before { content: "•"; color: var(--primary-blue); font-weight: bold; }
+
+    /* PATENT SECTION */
+    .patent-group { margin-bottom: 3rem; }
+    .patent-group-header { font-size: 1.1rem; color: var(--primary-blue); font-weight: 700; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .patent-item { border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.5rem; background: #f8fafc; height: 100%; display: flex; flex-direction: column; transform: translateZ(0); }
+    .patent-item:hover { border-color: var(--primary-blue); background: #fff; transform: translateY(-3px); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+    .patent-badge { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; margin-bottom: 0.75rem; align-self: flex-start; }
+    .badge-published { background: #d1fae5; color: #047857; border: 1px solid #a7f3d0; }
+    .badge-filed { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    .patent-title { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.5rem; color: #1e293b; }
+    .patent-meta { font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.75rem; font-family: 'Courier Prime', monospace; }
+    .patent-desc { font-size: 0.9rem; color: #475569; margin-bottom: 0.5rem; }
+    .patent-bullet { font-size: 0.85rem; color: #64748b; list-style: none; padding: 0; }
+    .patent-bullet li { position: relative; padding-left: 1rem; margin-bottom: 0.25rem; }
+    .patent-bullet li::before { content: '-'; position: absolute; left: 0; color: var(--primary-blue); }
+
+    /* PROJECT PORTFOLIO STYLING */
+    .project-card {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        transition: 0.3s;
+        position: relative;
+    }
+    .project-card:hover {
         border-color: var(--primary-blue);
-        background: #fff;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+    }
+    .project-badge { display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 4px 12px; border-radius: 4px; margin-bottom: 1rem; background: #e0f2fe; color: var(--primary-blue); }
+    .project-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: #1e293b; margin-bottom: 1rem; }
+    .project-section { margin-bottom: 1rem; }
+    .project-label { font-size: 0.85rem; font-weight: 700; color: #64748b; text-transform: uppercase; display: block; margin-bottom: 0.25rem; }
+    .project-desc { font-size: 1rem; color: #475569; line-height: 1.6; }
+
+    /* PERSONALITY STYLES */
+    .persona-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .persona-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 2rem; transition: 0.3s; height: 100%; display: flex; flex-direction: column; }
+    .persona-card:hover { background: #fff; border-color: var(--primary-blue); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+    .persona-icon { font-size: 2rem; color: var(--primary-blue); margin-bottom: 1rem; }
+    .persona-title { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.5rem; font-family: 'Playfair Display', serif; }
+    .persona-text { font-size: 0.95rem; color: #64748b; line-height: 1.6; margin-bottom: 1rem; }
+    .persona-params { margin-top: auto; padding-top: 1rem; border-top: 1px dashed #e2e8f0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .param-row { display: flex; justify-content: space-between; font-size: 0.8rem; color: #475569; }
+    .param-val { font-weight: 600; color: var(--primary-blue); }
+
+    .content-body p { text-align: justify; text-justify: inter-word; margin-bottom: 1.5rem; font-size: 1.05rem; color: #475569; }
+    .story-header { font-size: 1.4rem; font-weight: 600; color: var(--primary-blue); margin-top: 2.5rem; margin-bottom: 1rem; font-family: 'Playfair Display', serif; }
+    .contact-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
+    .contact-row { display: flex; align-items: center; gap: 12px; font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.75rem; }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+        .two-column-grid { grid-template-columns: 1fr; }
+        .persona-grid { grid-template-columns: 1fr; }
     }
 
-    .metric-num {
-        font-family: 'Inter', sans-serif;
-        font-size: 2.25rem;
-        font-weight: 700;
-        color: var(--primary-blue);
-        line-height: 1;
-        margin-bottom: 0.5rem;
-    }
-    .metric-label { 
-        font-family: 'Inter', sans-serif;
-        font-size: 0.8rem; 
-        color: var(--text-muted); 
-        font-weight: 600; 
-        text-transform: uppercase; 
-        letter-spacing: 0.5px; 
-    }
-
-    /* Timeline Styling */
-    .timeline { position: relative; padding-left: 1.5rem; margin-top: 1rem; z-index: 3; }
-    .timeline::before {
-        content: '';
-        position: absolute;
-        left: 6px; top: 8px; bottom: 0;
-        width: 2px;
-        background: var(--border-subtle);
-    }
-
-    .timeline-item { position: relative; margin-bottom: 3.5rem; padding-left: 1.5rem; }
-    .timeline-item:last-child { margin-bottom: 0; }
-    
-    .timeline-dot {
-        position: absolute;
-        left: 0;
-        top: 8px;
-        width: 14px; height: 14px;
-        background: #fff;
-        border: 3px solid var(--primary-blue);
-        border-radius: 50%;
-        z-index: 2;
-    }
-
-    .timeline-header {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 0.75rem;
-    }
-    .timeline-role { 
-        font-size: 1.15rem; 
-        font-weight: 700; 
-        color: var(--text-main); 
-        font-family: 'Playfair Display', serif;
-    }
-    .timeline-company { 
-        font-size: 0.95rem; 
-        color: var(--primary-blue); 
-        font-weight: 600; 
-        margin-bottom: 0.25rem;
-        font-family: 'Inter', sans-serif;
-    }
-    .timeline-date { 
-        font-size: 0.85rem; 
-        color: var(--text-muted); 
-        font-family: 'Inter', sans-serif;
-    }
-
-    /* Quote Box */
-    .quote-box {
-        background: #fffbeb;
-        border-left: 4px solid var(--accent-gold);
-        padding: 1.5rem;
-        border-radius: 4px;
-        margin: 2rem 0;
-        position: relative;
-        z-index: 3;
-    }
-    .quote-text {
-        font-family: 'Playfair Display', serif;
-        font-style: italic;
-        color: #78350f;
-        font-size: 1.1rem;
-    }
-
-    /* Skills Grid */
-    .skill-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1rem;
-        position: relative;
-        z-index: 3;
-    }
-    .skill-card {
-        background: #f8fafc;
-        padding: 1.5rem;
-        border-radius: 8px;
-        border: 1px solid var(--border-subtle);
-        display: flex;
-        align-items: flex-start;
-        gap: 1rem;
-        transition: var(--trans-fast);
-    }
-    .skill-card:hover {
-        border-color: var(--primary-blue);
-        background: #fff;
-    }
-    
-    .skill-icon {
-        width: 36px; height: 36px;
-        background: #eff6ff;
-        color: var(--primary-blue);
-        border-radius: 6px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1rem;
-        flex-shrink: 0;
-    }
-    .skill-content strong {
-        display: block;
-        margin-bottom: 0.25rem;
-        font-size: 0.95rem;
-    }
-
-    /* Patent Cards */
-    .patent-item {
-        border: 1px solid var(--border-subtle);
-        border-radius: 8px;
-        padding: 1.5rem;
-        margin-bottom: 1.5rem;
-        transition: var(--trans-fast);
-        background: #fafafa;
-        position: relative;
-        z-index: 3;
-    }
-    
-    .patent-item:hover {
-        border-color: var(--primary-blue);
-        background: #fff;
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-sm);
-    }
-    
-    .patent-item.published { border-left: 4px solid #10b981; }
-    .patent-item .patent-badge {
-        font-size: 0.7rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        padding: 4px 8px;
-        border-radius: 4px;
-        margin-bottom: 0.75rem;
-        display: inline-block;
-        font-family: 'Inter', sans-serif;
-    }
-    .badge-published { background: #d1fae5; color: #047857; }
-    .badge-filed { background: #eff6ff; color: #1d4ed8; }
-
-    /* Particles Container */
-    #particles-js {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        pointer-events: none;
-    }
-
-    /* =========================================
-       5. RESPONSIVE DESIGN (Optimized)
-       ========================================= */
     @media (max-width: 1024px) {
-        .app-container {
-            flex-direction: column;
-            max-width: 100%;
-            box-shadow: none;
-        }
-
-        .sidebar {
-            width: 100%;
-            height: auto;
-            position: relative;
-            padding: 2rem 1.5rem 1rem;
-        }
-
-        .profile-header {
-            margin-bottom: 1.5rem;
-        }
-        
-        .profile-name { font-size: 1.75rem; }
-        .avatar-wrapper { width: 100px; height: 100px; }
-
-        .nav-menu {
-            flex-direction: row;
-            overflow-x: auto;
-            margin: 0 -1.5rem;
-            padding: 0 1.5rem 1rem;
-            gap: 1rem;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        .nav-menu::-webkit-scrollbar { display: none; }
-
-        .nav-btn {
-            width: auto;
-            white-space: nowrap;
-            background: rgba(255,255,255,0.1);
-            padding: 0.6rem 1rem;
-            border-radius: 20px;
-        }
-        
-        .nav-btn.active {
-            background: #fff;
-            color: var(--primary-dark);
-        }
-        .nav-btn.active i { color: var(--primary-blue); }
-
+        .app-container { flex-direction: column; }
+        .sidebar { width: 100%; height: auto; position: relative; padding: 2rem 1.5rem; }
+        .content-area { padding: 2rem 1.5rem; }
+        .two-column-grid, .metrics-grid { grid-template-columns: 1fr; }
         .contact-footer { display: none; }
-
-        .content-area {
-            padding: 2rem 1.5rem;
-        }
-        
-        .card { padding: 1.5rem; }
-        .section-title { font-size: 1.5rem; }
     }
 </style>
 </head>
 <body>
 
-<!-- Background Animation Container -->
-<div id="particles-js"></div>
-
 <div class="app-container">
-    <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
         <div class="profile-header">
             <div class="avatar-wrapper">
@@ -614,497 +290,821 @@
         </div>
 
         <nav class="nav-menu">
-            <button class="nav-btn active" onclick="openTab(event, 'tab1')">
-                <i class="fas fa-book-open"></i> My Story
-            </button>
-            <button class="nav-btn" onclick="openTab(event, 'tab2')">
-                <i class="fas fa-briefcase"></i> Professional DNA
-            </button>
-            <button class="nav-btn" onclick="openTab(event, 'tab3')">
-                <i class="fas fa-road"></i> Career Journey
-            </button>
-            <button class="nav-btn" onclick="openTab(event, 'tab4')">
-                <i class="fas fa-microchip"></i> Skills Matrix
-            </button>
-            <button class="nav-btn" onclick="openTab(event, 'tab5')">
-                <i class="fas fa-file-contract"></i> Patent Portfolio
-            </button>
-            <button class="nav-btn" onclick="openTab(event, 'tab6')">
-                <i class="fas fa-user"></i> Personality
-            </button>
+            <button class="nav-btn active" onclick="openTab(event, 'tab1')"><i class="fas fa-book-open"></i> My Story</button>
+            <button class="nav-btn" onclick="openTab(event, 'tab3')"><i class="fas fa-road"></i> Career Timeline</button>
+            <button class="nav-btn" onclick="openTab(event, 'tab-projects')"><i class="fas fa-rocket"></i> Project Portfolio</button>
+            <button class="nav-btn" onclick="openTab(event, 'tab5')"><i class="fas fa-file-contract"></i> Patent Portfolio</button>
+            <button class="nav-btn" onclick="openTab(event, 'tab4')"><i class="fas fa-tools"></i> Skills Matrix</button>
+            <button class="nav-btn" onclick="openTab(event, 'tab6')"><i class="fas fa-user"></i> Personality</button>
         </nav>
 
         <div class="contact-footer">
-            <div class="contact-row">
-                <i class="fas fa-envelope"></i>
-                <span id="email-text">Piyush.sharma4698@gmail.com</span>
-                <button class="copy-btn" onclick="copyEmail()" title="Copy Email">
-                    <i class="far fa-copy"></i>
-                </button>
-            </div>
-            <div class="contact-row">
-                <i class="fab fa-linkedin"></i>
-                <a href="https://linkedin.com/in/piyushs98" target="_blank" style="color:inherit; text-decoration:none;">linkedin.com/in/piyushs98</a>
-            </div>
-            <div class="contact-row">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>Columbia, SC, USA</span>
-            </div>
+            <div class="contact-row"><i class="fas fa-envelope"></i> Piyush.sharma4698@gmail.com</div>
+            <div class="contact-row"><i class="fas fa-map-marker-alt"></i> Columbia, SC, USA</div>
         </div>
     </aside>
 
-    <!-- RIGHT CONTENT AREA -->
     <main class="content-area">
-        
-        <!-- TAB 1: MY STORY -->
+        <!-- TAB 1: STORY -->
         <div id="tab1" class="tab-content active">
-            <div class="card spotlight-card">
+            <div class="card">
                 <h2 class="section-title"><i class="fas fa-book-reader"></i> The Origin Story</h2>
                 
-                <div class="quote-box">
-                    <p class="quote-text">"I am Iron Man." Those three words changed my life when I was just 12 years old. It wasn't about the suit; it was about the engineering mindset—the belief that you can build your way out of any problem.</p>
-                </div>
+                <div class="content-body">
+                    <div class="story-header">I. The Foundation: Curiosity to Reverse Engineering</div>
+                    <p>
+                        My journey into engineering began not in a classroom, but with the disassembly of household electronics. Growing up, I was driven by a need to understand the 'black box'—how invisible signals translated into sound, light, and motion. This early curiosity matured into a disciplined pursuit of electronics engineering during my Bachelor of Technology, where I transitioned from merely observing systems to building them. I learned early that successful engineering isn't just about functionality; it is about reliability, scalability, and the seamless integration of hardware and software.
+                    </p>
 
-                <p>
-                    My journey in engineering is built on a foundation of curiosity and rigorous problem-solving. From dismantling radios as a child to welding hoverboards in college, I learned early on to <strong>build things people actually use.</strong>
-                </p>
-                <p>
-                    This passion evolved into a professional career characterized by precision and innovation. As a <strong>Product Development & Test Engineer</strong> with 3+ years in the semiconductor and optoelectronic sectors, I specialize in bridging the gap between theoretical design and mass production.
-                </p>
-                <p>
-                    I am comfortable working at the intersection of optics, electronics, firmware, and mechanics. My expertise lies in turning complex requirements into robust test plans, automating measurement systems using Python and LabVIEW, and collaborating with cross-functional teams to improve yield, reliability, and time-to-root-cause. I am now seeking to bring this expertise to develop next-generation process controls.
-                </p>
+                    <div class="story-header">II. The Crucible: System Validation & Hardware Integration</div>
+                    <p>
+                        Moving to the United States to pursue my Master’s degree at Wichita State University marked a pivot to high-performance hardware engineering. At the <strong>National Institute for Aviation Research (NIAR)</strong>, my focus shifted from theoretical design to critical system validation. I was responsible for benchmarking complex electro-mechanical systems against rigorous analytical models, ensuring that electrical designs and sensor integrations held up under real-world stress. This experience instilled in me a "zero-defect" mindset—validating that every circuit, signal, and interface performs flawlessly before it ever leaves the bench.
+                    </p>
+
+                    <div class="story-header">III. The Impact: Innovation & Optimization</div>
+                    <p>
+                        Currently, at <strong>Sensor Electronic Technology, Inc. (SETi)</strong>, I operate at the intersection of R&D and mass production. My role has evolved from component-level design to leading system-wide optimizations. By architecting automated test frameworks using Python and LabVIEW, I reduced manual testing time by over 50%, directly impacting throughput. My focus on root-cause analysis and process control has not only improved yield but also generated significant intellectual property, resulting in over 13 patent applications. I don't just maintain systems; I engineer them to be smarter, faster, and more cost-effective.
+                    </p>
+
+                    <div class="story-header">IV. The Philosophy</div>
+                    <p>
+                        <strong>Engineering is the art of making the complex feel effortless.</strong> Whether I am troubleshooting a mixed-signal PCB or defining the requirements for a new product, my approach is consistent: innovation requires both creative vision and rigorous execution. I am now focused on applying my expertise in product development, automated testing, and reliability engineering to build next-generation systems that push the boundaries of performance and efficiency for industry leaders.
+                    </p>
+                </div>
             </div>
         </div>
 
-        <!-- TAB 2: PROFESSIONAL DNA -->
-        <div id="tab2" class="tab-content">
-            <div class="card spotlight-card">
-                <h2 class="section-title"><i class="fas fa-fingerprint"></i> Professional Identity</h2>
-                <div class="metrics-grid">
-                    <div class="metric-box">
-                        <div class="metric-num count-up" data-target="13">0</div>
-                        <div class="metric-label">Patents Filed</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-num count-up" data-target="60" data-prefix="$" data-suffix="k">0</div>
-                        <div class="metric-label">Annual Savings</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-num count-up" data-target="50" data-suffix="%">0</div>
-                        <div class="metric-label">Test Time Cut</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-num count-up" data-target="30" data-suffix="%">0</div>
-                        <div class="metric-label">Issue Closure Rate</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card spotlight-card">
-                <h3 class="section-title" style="font-size: 1.4rem;"><i class="fas fa-bullseye"></i> Value Proposition</h3>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="margin-bottom: 1.2rem; display: flex; gap: 1rem; align-items: flex-start;">
-                        <i class="fas fa-check-circle" style="color: var(--primary-blue); margin-top: 5px;"></i>
-                        <div>
-                            <strong>Root-Cause Analysis & Troubleshooting:</strong> Expert in 8D-style investigations and structured troubleshooting to isolate failure modes in mixed-signal electronics and LED modules.
-                        </div>
-                    </li>
-                    <li style="margin-bottom: 1.2rem; display: flex; gap: 1rem; align-items: flex-start;">
-                        <i class="fas fa-check-circle" style="color: var(--primary-blue); margin-top: 5px;"></i>
-                        <div>
-                            <strong>Automated Test Systems:</strong> Proficiency in building Python and LabVIEW frameworks that increase throughput and data consistency across operators.
-                        </div>
-                    </li>
-                    <li style="margin-bottom: 1.2rem; display: flex; gap: 1rem; align-items: flex-start;">
-                        <i class="fas fa-check-circle" style="color: var(--primary-blue); margin-top: 5px;"></i>
-                        <div>
-                            <strong>Lab Operations Leadership:</strong> Proven track record of managing characterization labs, reducing outsourced repair costs, and ensuring instrument uptime.
-                        </div>
-                    </li>
-                    <li style="margin-bottom: 1.2rem; display: flex; gap: 1rem; align-items: flex-start;">
-                         <i class="fas fa-check-circle" style="color: var(--primary-blue); margin-top: 5px;"></i>
-                         <div>
-                             <strong>Product Lifecycle (NPI):</strong> Guiding products from concept to mass production with robust Design for Excellence (DFx) input and design reviews.
-                         </div>
-                     </li>
-                     <li style="display: flex; gap: 1rem; align-items: flex-start;">
-                         <i class="fas fa-check-circle" style="color: var(--primary-blue); margin-top: 5px;"></i>
-                         <div>
-                             <strong>Strategic Vendor Management:</strong> Coordinating with external vendors for equipment maintenance and calibration, directly impacting the bottom line.
-                         </div>
-                     </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- TAB 3: CAREER JOURNEY -->
+        <!-- TAB 3: CAREER (Grapher Timeline - Clean Trace) -->
         <div id="tab3" class="tab-content">
-            <div class="card spotlight-card">
+            <div class="card">
                 <h2 class="section-title"><i class="fas fa-road"></i> Career Timeline</h2>
                 
-                <div class="timeline">
-                    <!-- Item 1 -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-header">
-                            <span class="timeline-role">Lead Application Engineer / Electrical Design Engineer</span>
-                            <span class="timeline-company">@ Sensor Electronic Technology Inc (SETi)</span>
-                            <span class="timeline-date">Aug 2022 - Aug 2025</span>
-                        </div>
-                        <div style="color: var(--text-body);">
-                            <p style="font-size: 0.95rem; margin-bottom: 1rem; color: var(--text-main);">
-                                Spearheaded end-to-end device characterization for LED wafers and modules, bridging the gap between R&D and manufacturing.
-                            </p>
-                            <ul style="padding-left: 1.2rem; margin-bottom: 0; list-style-type: disc;">
-                                <li style="margin-bottom: 0.5rem;"><strong>Lab Management:</strong> Managed lab operations and vendor coordination, slashing annual maintenance costs by <strong>$50-60k</strong>.</li>
-                                <li style="margin-bottom: 0.5rem;"><strong>Automation:</strong> Architected Python/LabVIEW test frameworks, reducing manual testing time by over <strong>50%</strong>.</li>
-                                <li style="margin-bottom: 0.5rem;"><strong>Process Control:</strong> Established bi-weekly error reviews, boosting issue closure rates by <strong>30%</strong>.</li>
-                                <li><strong>Hardware Design:</strong> Collaborated on Altium schematic reviews and led system-level debugging for driver circuits.</li>
-                            </ul>
+                <div class="timeline-container">
+                    <div class="timeline-line-bg"></div>
+                    <div class="timeline-line-progress" id="scroll-line"></div>
+
+                    <!-- Node 1: Education (Present) -->
+                    <div class="timeline-node">
+                        <div class="node-header">
+                            <span class="node-time">May '25 - Present</span>
+                            <span class="node-role">Executive Master of Science in Project Management</span>
+                            <span class="node-meta">Tennessee Wesleyan University | Athens, TN</span>
                         </div>
                     </div>
 
-                    <!-- Item 2 -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-header">
-                            <span class="timeline-role">Research Engineer</span>
-                            <span class="timeline-company">@ National Institute for Aviation Research (NIAR)</span>
-                            <span class="timeline-date">Mar 2021 - Jul 2022</span>
+                    <!-- Node 2: SETi (Work) -->
+                    <div class="timeline-node">
+                        <div class="node-header">
+                            <span class="node-time">Aug '22 - Present</span>
+                            <span class="node-role">Lead Application Engineer / Electrical Design Engineer</span>
+                            <span class="node-meta">Sensor Electronic Technology, Inc. (SETi) | Columbia, SC</span>
                         </div>
-                        <div style="color: var(--text-body);">
-                            <p style="font-size: 0.95rem; margin-bottom: 1rem; color: var(--text-main);">
-                                Focused on the development and validation of electro-mechanical and avionics systems for high-stakes aerospace applications.
-                            </p>
-                            <ul style="padding-left: 1.2rem; margin-bottom: 0; list-style-type: disc;">
-                                <li style="margin-bottom: 0.5rem;"><strong>System Validation:</strong> Executed bench tests and compared data against FEA models to validate design assumptions.</li>
-                                <li style="margin-bottom: 0.5rem;"><strong>Test Development:</strong> Translated complex system requirements into automated data acquisition scripts and instrumentation setups.</li>
-                                <li><strong>Technical Reporting:</strong> Authored detailed technical reports used by project sponsors to greenlight design phases.</li>
-                            </ul>
+                        <div class="node-content">
+                            <p>Spearheaded device characterization for LED wafers/modules and led system-level optimization.</p>
+                            <div class="node-section">
+                                <h5>Key Achievements</h5>
+                                <ul class="node-list">
+                                    <li>Reduced manual testing time by <strong>&gt;50%</strong> by deploying automated Python/LabVIEW test suites.</li>
+                                    <li>Slashed annual calibration/maintenance costs by <strong>$50-60k</strong> through insourced maintenance strategies.</li>
+                                    <li>Improved issue closure rate by <strong>~30%</strong> by establishing a bi-weekly error review process.</li>
+                                    <li>Named inventor on <strong>13+ patent applications</strong> (hardware & system-level).</li>
+                                </ul>
+                            </div>
+                            <div class="node-section">
+                                <h5>Core Responsibilities</h5>
+                                <ul class="node-list">
+                                    <li>Owned end-to-end device characterization and system-level troubleshooting for LED modules.</li>
+                                    <li>Collaborated on schematic/layout reviews using <strong>Altium Designer</strong> for mixed-signal boards.</li>
+                                    <li>Led system-level debugging for driver circuits and power electronics.</li>
+                                    <li>Managed lab operations, including vendor coordination and equipment calibration.</li>
+                                    <li>Trained technicians and junior engineers in measurement methods and safety.</li>
+                                    <li>Collaborated with customers/field teams on failure analysis and data-driven recommendations.</li>
+                                </ul>
+                            </div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">LabVIEW</span>
+                                <span class="tech-tag">Altium</span>
+                                <span class="tech-tag">Root Cause Analysis</span>
+                                <span class="tech-tag">NPI</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Node 3: NIAR (Work) -->
+                    <div class="timeline-node">
+                        <div class="node-header">
+                            <span class="node-time">Mar '21 - July '22</span>
+                            <span class="node-role">Research Engineer</span>
+                            <span class="node-meta">National Institute for Aviation Research (NIAR) | Wichita, KS</span>
+                        </div>
+                        <div class="node-content">
+                            <p>Focused on the development, modeling, and validation of avionics systems for high-stakes aerospace applications.</p>
+                            <div class="node-section">
+                                <h5>Key Contributions</h5>
+                                <ul class="node-list">
+                                    <li>Validated system performance by running bench tests and comparing results against <strong>FEA/Analytical models</strong>.</li>
+                                    <li>Refined design assumptions based on empirical data capture.</li>
+                                    <li>Authored technical reports used by project sponsors to greenlight design phases.</li>
+                                </ul>
+                            </div>
+                            <div class="node-section">
+                                <h5>Core Responsibilities</h5>
+                                <ul class="node-list">
+                                    <li>Translated system requirements into test procedures and instrumentation setups.</li>
+                                    <li>Developed data acquisition scripts for electro-mechanical system testing.</li>
+                                    <li>Supported modeling and testing of avionics systems.</li>
+                                </ul>
+                            </div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Data Acquisition</span>
+                                <span class="tech-tag">System Modeling</span>
+                                <span class="tech-tag">FEA Validation</span>
+                                <span class="tech-tag">Technical Writing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Node 4: MS Education -->
+                    <div class="timeline-node">
+                        <div class="node-header">
+                            <span class="node-time">Aug '20 - May '22</span>
+                            <span class="node-role">Master of Science in Electrical Engineering</span>
+                            <span class="node-meta">Wichita State University | Wichita, KS</span>
+                        </div>
+                        <div class="node-content">
+                            <span class="tech-tags">GPA: 3.2/4.0</span>
+                        </div>
+                    </div>
+
+                    <!-- Node 5: BS Education -->
+                    <div class="timeline-node">
+                        <div class="node-header">
+                            <span class="node-time">Aug '16 - July '20</span>
+                            <span class="node-role">Bachelor of Technology in Electronics Engineering</span>
+                            <span class="node-meta">MIT Academy of Engineering | Pune, India</span>
+                        </div>
+                        <div class="node-content">
+                            <span class="tech-tags">GPA: 3.7/4.0</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 4: SKILLS -->
+        <!-- NEW TAB: PROJECT PORTFOLIO -->
+        <div id="tab-projects" class="tab-content">
+            <div class="card">
+                <h2 class="section-title"><i class="fas fa-rocket"></i> Project Portfolio</h2>
+                
+                <div class="timeline-container">
+                    <div class="timeline-line-bg"></div>
+                    <div class="timeline-line-progress" id="scroll-line-projects"></div>
+
+                    <!-- ERA 1: SETi (2022-2025) -->
+                    <div class="timeline-node">
+                        <div class="node-header">
+                            <span class="node-time">SETi (2022 - Present)</span>
+                            <span class="node-role">Wafer Burn-In Automation Framework</span>
+                        </div>
+                        <div class="node-content">
+                            <div class="node-section">
+                                <h5>The Challenge</h5>
+                                <p>Manual burn-in testing of LED wafers was a critical bottleneck, taking 20+ hours per cycle with inconsistent data logging.</p>
+                            </div>
+                            <div class="node-section">
+                                <h5>The Engineering Solution</h5>
+                                <p>Developed a custom Python/LabVIEW control framework to automate current injection and voltage monitoring.</p>
+                            </div>
+                            <div class="node-section">
+                                <h5>Impact</h5>
+                                <p>Reduced cycle time to <strong>7 hours</strong> (>50% reduction) while increasing data granularity for reliability analysis.</p>
+                            </div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">LabVIEW</span>
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Process Control</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NEW PROJECT: High Density UVA Module -->
+                    <div class="timeline-node">
+                        <div class="node-header">
+                            <span class="node-time">SETi (Internal R&D)</span>
+                            <span class="node-role">High-Density UVA Module Characterization</span>
+                        </div>
+                        <div class="node-content">
+                            <div class="node-section">
+                                <h5>The Challenge</h5>
+                                <p>Validating a hyper-dense 1"x1" module containing 160 LEDs for industrial water disinfection. The extreme packing density resulted in junction temperatures exceeding 150°C–200°C, requiring rigorous validation of optical stability for submerged liquid-cooled applications.</p>
+                            </div>
+                            <div class="node-section">
+                                <h5>The Engineering Solution</h5>
+                                <p>Engineered a fully automated test bench using <strong>LabVIEW</strong> to control precision power supplies and multimeters. Executed long-duration stress tests to map <strong>Power Retention vs. Temperature vs. Time</strong> profiles, simulating the cold thermal environment of a water disinfection facility.</p>
+                            </div>
+                            <div class="node-section">
+                                <h5>Impact</h5>
+                                <p>Generated critical thermal-optical performance reports that confirmed the module's viability for submerged high-intensity disinfection, directly informing the product roadmap.</p>
+                            </div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">LabVIEW Automation</span>
+                                <span class="tech-tag">Thermal Analysis</span>
+                                <span class="tech-tag">High-Density LED</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NEW PROJECT: TESLA LIGHTING -->
+                    <div class="timeline-node">
+                        <div class="node-header">
+                            <span class="node-time">SETi (Customer Quality)</span>
+                            <span class="node-role">Tesla Tail Light Thermal & Optical Validation</span>
+                        </div>
+                        <div class="node-content">
+                            <div class="node-section">
+                                <h5>The Challenge</h5>
+                                <p>High-density LED tail light assemblies were experiencing "thermal dimming"—where excessive board temperatures reduced luminance output—risking non-compliance with daylight visibility standards.</p>
+                            </div>
+                            <div class="node-section">
+                                <h5>The Engineering Solution</h5>
+                                <p>Executed a rigorous inspection and validation protocol. Utilized spectroradiometers and luminance meters to capture optical performance while simultaneously monitoring thermal test points on the PCB. Performed a correlation study by cross-referencing physical thermal data against SolidWorks thermal simulations.</p>
+                            </div>
+                            <div class="node-section">
+                                <h5>Impact</h5>
+                                <p>Validated the accuracy of thermal predictive models and confirmed the module's optical performance boundaries, ensuring the design met strict automotive safety criteria for future production.</p>
+                            </div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">SolidWorks Simulation</span>
+                                <span class="tech-tag">Spectroradiometry</span>
+                                <span class="tech-tag">Thermal Validation</span>
+                                <span class="tech-tag">QA/QC</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ERA 2: NIAR (2021-2022) -->
+                    <div class="timeline-node">
+                        <div class="node-header">
+                            <span class="node-time">NIAR (2021 - 2022)</span>
+                            <span class="node-role">Aero-Acoustic Drone Optimization</span>
+                        </div>
+                        <div class="node-content">
+                            <div class="node-section">
+                                <h5>The Challenge</h5>
+                                <p>High decibel noise pollution from commercial drone propulsion systems limiting urban deployment.</p>
+                            </div>
+                            <div class="node-section">
+                                <h5>The Engineering Solution</h5>
+                                <p>Executed 3D scanning of propeller geometry to create a baseline CAD model. Implemented biomimetic design (serrated leading edges) to disrupt laminar flow vortices. Rapidly prototyped modified blade designs using 3D printing.</p>
+                            </div>
+                            <div class="node-section">
+                                <h5>Impact</h5>
+                                <p>Achieved a <strong>20% reduction</strong> in noise volume verified in an acoustic anechoic chamber.</p>
+                            </div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">3D Scanning</span>
+                                <span class="tech-tag">Acoustics</span>
+                                <span class="tech-tag">Prototyping</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-node">
+                        <div class="node-header">
+                            <span class="node-time">NIAR (2021 - 2022)</span>
+                            <span class="node-role">Hybrid Airship "Mothership"</span>
+                        </div>
+                        <div class="node-content">
+                            <div class="node-section">
+                                <h5>The Challenge</h5>
+                                <p>Developing a long-endurance aerial platform capable of deploying and recharging a swarm of smaller drones mid-flight.</p>
+                            </div>
+                            <div class="node-section">
+                                <h5>The Engineering Solution</h5>
+                                <p>Engineered a hybrid propulsion system utilizing helium for static lift and electric motors for vectored thrust. Architected a Battery Management System (BMS) to balance power loads between propulsion and the drone charging dock.</p>
+                            </div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">BMS Design</span>
+                                <span class="tech-tag">Electro-Mechanical</span>
+                                <span class="tech-tag">System Integration</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: SKILLS (REDESIGNED SPEC SHEET) -->
         <div id="tab4" class="tab-content">
-            <div class="card spotlight-card">
-                <h2 class="section-title"><i class="fas fa-tools"></i> Technical Arsenal</h2>
+            <div class="card">
+                <h2 class="section-title"><i class="fas fa-tools"></i> Engineering Capabilities Matrix</h2>
                 
-                <h4 style="margin: 0 0 1rem; font-size: 1.2rem; color: var(--primary-blue);">Automation & Data Analysis</h4>
-                <div class="skill-grid" style="margin-bottom: 2rem;">
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-code"></i></div>
-                        <div class="skill-content">
-                            <strong>Programming</strong>
-                            <div style="font-size: 0.85rem; color: var(--text-muted);">Python (PyVISA, NumPy, pandas), LabVIEW</div>
+                <div class="two-column-grid" style="margin-bottom: 2rem;">
+                    
+                    <!-- Card 1: Software -->
+                    <div class="spec-card">
+                        <div class="spec-header">
+                            <div class="spec-icon"><i class="fas fa-code"></i></div>
+                            <div class="spec-title">Simulation & Code</div>
+                        </div>
+                        
+                        <div class="spec-list">
+                            <div class="spec-item">
+                                <div class="spec-name-row">
+                                    <span>Python</span>
+                                    <span>Advance</span>
+                                </div>
+                                <div class="spec-bar-bg"><div class="spec-bar-fill" style="width: 85%;"></div></div>
+                                <div class="spec-tags">
+                                    <span class="spec-tag">PyVISA</span>
+                                    <span class="spec-tag">NumPy</span>
+                                    <span class="spec-tag">pandas</span>
+                                    <span class="spec-tag">Matplotlib</span>
+                                </div>
+                            </div>
+                            
+                            <div class="spec-item">
+                                <div class="spec-name-row">
+                                    <span>LabVIEW</span>
+                                    <span>Intermediate</span>
+                                </div>
+                                <div class="spec-bar-bg"><div class="spec-bar-fill" style="width: 65%;"></div></div>
+                                <div class="spec-tags">
+                                    <span class="spec-tag">NI TestStand</span>
+                                    <span class="spec-tag">Instrument Control</span>
+                                </div>
+                            </div>
+
+                            <div class="spec-item">
+                                <div class="spec-name-row">
+                                    <span>Data Analysis</span>
+                                    <span>High</span>
+                                </div>
+                                <div class="spec-bar-bg"><div class="spec-bar-fill" style="width: 90%;"></div></div>
+                                <div class="spec-tags">
+                                    <span class="spec-tag">Statistical Analysis</span>
+                                    <span class="spec-tag">DOE</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-chart-bar"></i></div>
-                        <div class="skill-content">
-                            <strong>Data Science</strong>
-                            <div style="font-size: 0.85rem; color: var(--text-muted);">Statistical Analysis, DOE, Matplotlib</div>
+                    
+                    <!-- Card 2: Hardware -->
+                    <div class="spec-card">
+                        <div class="spec-header">
+                            <div class="spec-icon"><i class="fas fa-layer-group"></i></div>
+                            <div class="spec-title">Electronics Design</div>
+                        </div>
+                        
+                        <div class="spec-list">
+                            <div class="spec-item">
+                                <div class="spec-name-row">
+                                    <span>Altium Designer</span>
+                                    <span>Advanced</span>
+                                </div>
+                                <div class="spec-bar-bg"><div class="spec-bar-fill" style="width: 85%;"></div></div>
+                                <div class="spec-tags">
+                                    <span class="spec-tag">Schematic Capture</span>
+                                    <span class="spec-tag">PCB Layout</span>
+                                </div>
+                            </div>
+                            
+                            <div class="spec-item">
+                                <div class="spec-name-row">
+                                    <span>System Architecture</span>
+                                    <span>Advanced</span>
+                                </div>
+                                <div class="spec-bar-bg"><div class="spec-bar-fill" style="width: 85%;"></div></div>
+                                <ul class="spec-bullet-list" style="margin-top: 0.5rem;">
+                                    <li>Mixed-Signal Board Design</li>
+                                    <li>LED Driver Circuits</li>
+                                    <li>Power Electronics Integration</li>
+                                    <li>Sensor Interfacing</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <h4 style="margin: 0 0 1rem; font-size: 1.2rem; color: var(--primary-blue);">Electronics & Design</h4>
-                <div class="skill-grid" style="margin-bottom: 2rem;">
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-layer-group"></i></div>
-                        <div class="skill-content">
-                            <strong>PCB Design</strong>
-                            <div style="font-size: 0.85rem; color: var(--text-muted);">Altium Designer, Mixed-signal boards, Sensors</div>
+                <div class="two-column-grid">
+                    
+                    <!-- Card 3: Metrology -->
+                    <div class="spec-card">
+                        <div class="spec-header">
+                            <div class="spec-icon"><i class="fas fa-wave-square"></i></div>
+                            <div class="spec-title">The Test Bench</div>
                         </div>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-microchip"></i></div>
-                        <div class="skill-content">
-                            <strong>Systems</strong>
-                            <div style="font-size: 0.85rem; color: var(--text-muted);">Power Electronics, LED Drivers, Firmware</div>
+                        
+                        <div class="spec-item">
+                            <div class="spec-name-row">
+                                <span>Instrumentation Mastery</span>
+                                <span>High</span>
+                            </div>
+                            <div class="spec-bar-bg"><div class="spec-bar-fill" style="width: 90%;"></div></div>
+                            <div class="spec-tags" style="margin-top: 0.75rem;">
+                                <span class="spec-tag">Keysight SMUs</span>
+                                <span class="spec-tag">Keithley 2400</span>
+                                <span class="spec-tag">Oscilloscopes</span>
+                                <span class="spec-tag">DMMs</span>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <h4 style="margin: 0 0 1rem; font-size: 1.2rem; color: var(--primary-blue);">Metrology & Instrumentation</h4>
-                <div class="skill-grid" style="margin-bottom: 2rem;">
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-wave-square"></i></div>
-                        <div class="skill-content">
-                            <strong>Instruments</strong>
-                            <div style="font-size: 0.85rem; color: var(--text-muted);">Keysight/Keithley SMUs, Oscilloscopes, DMMs</div>
+                        <div class="spec-item" style="margin-top: 1.5rem;">
+                            <strong style="display:block; margin-bottom:0.5rem; color:#1e293b; font-size:0.95rem;">Stimulus (Source)</strong>
+                            <div class="spec-tags">
+                                <span class="spec-tag">Function Generators</span>
+                                <span class="spec-tag">Precision Power Supplies</span>
+                                <span class="spec-tag">Thermal Chambers</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item" style="margin-top: 1rem;">
+                            <strong style="display:block; margin-bottom:0.5rem; color:#1e293b; font-size:0.95rem;">Measurement (Sense)</strong>
+                            <ul class="spec-bullet-list">
+                                <li>Integrating Spheres (Optical Power)</li>
+                                <li>Spectrometers (Spectrum Analysis)</li>
+                                <li>IV/VT Sweep Automation</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-sun"></i></div>
-                        <div class="skill-content">
-                            <strong>Optical</strong>
-                            <div style="font-size: 0.85rem; color: var(--text-muted);">Integrating Spheres, Spectrometers, Thermal Chambers</div>
+
+                    <!-- Card 4: Operations -->
+                    <div class="spec-card">
+                        <div class="spec-header">
+                            <div class="spec-icon"><i class="fas fa-cogs"></i></div>
+                            <div class="spec-title">Process & Quality</div>
+                        </div>
+
+                         <div class="spec-item">
+                            <div class="spec-name-row">
+                                <span>Quality Standards</span>
+                                <span>Advanced</span>
+                            </div>
+                            <div class="spec-bar-bg"><div class="spec-bar-fill" style="width: 85%;"></div></div>
+                        </div>
+                        
+                        <div class="spec-item" style="margin-top: 1.5rem;">
+                            <strong style="display:block; margin-bottom:0.5rem; color:#1e293b; font-size:0.95rem;">Operational Protocols</strong>
+                            <ul class="spec-bullet-list">
+                                <li>Root Cause Analysis (8D / 5-Why)</li>
+                                <li>New Product Introduction (NPI) Support</li>
+                                <li>Design for Excellence (DFx) Input</li>
+                                <li>Structured Troubleshooting</li>
+                            </ul>
+                        </div>
+
+                        <div class="spec-item" style="margin-top: 1.5rem;">
+                            <strong style="display:block; margin-bottom:0.5rem; color:#1e293b; font-size:0.95rem;">Cross-Functional Leadership</strong>
+                            <div class="spec-tags">
+                                <span class="spec-tag">Vendor Coordination</span>
+                                <span class="spec-tag">Documentation</span>
+                                <span class="spec-tag">Technician Training</span>
+                                <span class="spec-tag">Issue Tracking</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                 <h4 style="margin: 0 0 1rem; font-size: 1.2rem; color: var(--primary-blue);">Product Lifecycle & Quality</h4>
-                 <div class="skill-grid">
-                     <div class="skill-card">
-                         <div class="skill-icon"><i class="fas fa-clipboard-check"></i></div>
-                         <div class="skill-content">
-                             <strong>NPI & Strategy</strong>
-                             <div style="font-size: 0.85rem; color: var(--text-muted);">Requirements Capture, DFx Input, Design Review</div>
-                         </div>
-                     </div>
-                     <div class="skill-card">
-                         <div class="skill-icon"><i class="fas fa-search-location"></i></div>
-                         <div class="skill-content">
-                             <strong>Quality Assurance</strong>
-                             <div style="font-size: 0.85rem; color: var(--text-muted);">Root Cause Analysis, 8D Investigations, Reliability</div>
-                         </div>
-                     </div>
-                 </div>
             </div>
         </div>
 
         <!-- TAB 5: PATENTS -->
         <div id="tab5" class="tab-content">
-            <div class="card spotlight-card">
+            <div class="card">
                 <h2 class="section-title"><i class="fas fa-certificate"></i> Patent Portfolio</h2>
-                <p style="margin-bottom: 2rem;">
-                    Named inventor on 13+ hardware and system-level patent applications, focusing on UV-LED integration and public health solutions.
-                </p>
-
-                <!-- Patent 1 -->
-                <div class="patent-item published">
-                    <span class="patent-badge badge-published">Published</span>
-                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Footwear Treatment System</h3>
-                    <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;">US Patent App #20250113976</div>
-                    <p style="margin-bottom: 0;">
-                        A cylindrical UV-LED insert system for footwear that circulates filtered air while disinfecting interiors, eliminating odors and fungi.
-                    </p>
+                
+                <!-- Published Group -->
+                <div class="patent-group">
+                    <div class="patent-group-header">
+                        <i class="fas fa-check-circle"></i> PUBLISHED & GRANTED
+                    </div>
+                    <div class="two-column-grid">
+                        <!-- 1 -->
+                        <div class="patent-item">
+                            <span class="patent-badge badge-published">Published</span>
+                            <div class="patent-title">Footwear Treatment System</div>
+                            <div class="patent-meta">US20250113976A1 • Oct 5, 2023</div>
+                            <ul class="patent-bullet">
+                                <li>Invented UV‑sanitization + airflow + photocatalytic coatings for shoe hygiene.</li>
+                                <li>Integrated tilt/motion sensors and UV‑blocking geometry for safety.</li>
+                            </ul>
+                        </div>
+                        <!-- 2 -->
+                        <div class="patent-item">
+                            <span class="patent-badge badge-published">Published</span>
+                            <div class="patent-title">Motor Vehicle Deodorizer</div>
+                            <div class="patent-meta">WO2025189060A1 • Mar 8, 2024</div>
+                            <ul class="patent-bullet">
+                                <li>Invented UV‑LED (<390 nm) TiO₂ photocatalytic oxidation mechanism.</li>
+                                <li>Architected power strategy prioritizing regenerative‑braking energy.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Patent 2 -->
-                <div class="patent-item">
-                    <span class="patent-badge badge-filed">Filed</span>
-                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Faucet Illumination System</h3>
-                    <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;">App #63/673,811</div>
-                    <p style="margin-bottom: 0;">
-                        Self-sanitizing faucet fixture using integrated UV-C LEDs to prevent biofilm formation in water outlets.
-                    </p>
+                <!-- Pending Group -->
+                <div class="patent-group">
+                    <div class="patent-group-header">
+                        <i class="fas fa-clock"></i> INNOVATION PIPELINE (PENDING)
+                    </div>
+                    <div class="two-column-grid">
+                        <!-- 3 -->
+                        <div class="patent-item">
+                            <span class="patent-badge badge-filed">Pending</span>
+                            <div class="patent-title">Headset Sterilization</div>
+                            <div class="patent-meta">US App 63/652,425 • May 31, 2024</div>
+                            <ul class="patent-bullet">
+                                <li>UV‑C LED stand (260–270 nm) achieving high pathogen reduction while charging.</li>
+                                <li>Defined modular configurations and safety enclosures.</li>
+                            </ul>
+                        </div>
+                        <!-- 4 -->
+                        <div class="patent-item">
+                            <span class="patent-badge badge-filed">Pending</span>
+                            <div class="patent-title">Faucet Illumination</div>
+                            <div class="patent-meta">US App 63/673,811 • Jul 22, 2024</div>
+                            <ul class="patent-bullet">
+                                <li>Engineered UV‑LED for optical uniformity and energy‑optimized control.</li>
+                                <li>Studied material compatibility for long‑term durability.</li>
+                            </ul>
+                        </div>
+                        <!-- 5 -->
+                        <div class="patent-item">
+                            <span class="patent-badge badge-filed">Pending</span>
+                            <div class="patent-title">Far-UVC Treatment</div>
+                            <div class="patent-meta">Filed Aug 29, 2024</div>
+                            <ul class="patent-bullet">
+                                <li>Developed chamber architecture for controlled far‑UVC decontamination.</li>
+                                <li>Targeted healthcare/workplace use with improved reliability.</li>
+                            </ul>
+                        </div>
+                        <!-- 6 -->
+                        <div class="patent-item">
+                            <span class="patent-badge badge-filed">Pending</span>
+                            <div class="patent-title">Tub Ultraviolet Treatment</div>
+                            <div class="patent-meta">Filed Oct 24, 2024</div>
+                            <ul class="patent-bullet">
+                                <li>Targeted microbial elimination on bathtub surfaces via sealed LED domes.</li>
+                                <li>Implemented microcontroller scheduling and manual override.</li>
+                            </ul>
+                        </div>
+                        <!-- 7 -->
+                        <div class="patent-item">
+                            <span class="patent-badge badge-filed">Pending</span>
+                            <div class="patent-title">Swimming Pool Treatment</div>
+                            <div class="patent-meta">Filed Dec 16, 2024</div>
+                            <ul class="patent-bullet">
+                                <li>Designed far‑UVC LED configurations; integrated sensor‑driven activation.</li>
+                                <li>Specified UV‑resistant/photocatalytic coatings.</li>
+                            </ul>
+                        </div>
+                        <!-- 8 -->
+                        <div class="patent-item">
+                            <span class="patent-badge badge-filed">Pending</span>
+                            <div class="patent-title">ESD Protection</div>
+                            <div class="patent-meta">Filed Jan 31, 2025</div>
+                            <ul class="patent-bullet">
+                                <li>Invented 254 nm UV‑C ionization concept with real‑time static detection.</li>
+                                <li>Designed standalone/rack‑mount configurations.</li>
+                            </ul>
+                        </div>
+                        <!-- 9 -->
+                        <div class="patent-item">
+                            <span class="patent-badge badge-filed">Pending</span>
+                            <div class="patent-title">H₂S Neutralization</div>
+                            <div class="patent-meta">Filed Mar 27, 2025</div>
+                            <ul class="patent-bullet">
+                                <li>UV‑based method to mitigate H₂S hazards in confined spaces.</li>
+                                <li>Built modular architecture with real‑time sensing + AI optimization.</li>
+                            </ul>
+                        </div>
+                        <!-- 10 -->
+                        <div class="patent-item">
+                            <span class="patent-badge badge-filed">Pending</span>
+                            <div class="patent-title">AR Display Tech</div>
+                            <div class="patent-meta">Filed May 1, 2025</div>
+                            <ul class="patent-bullet">
+                                <li>Integrated low‑power UV‑A/B LEDs with photochromic coatings.</li>
+                                <li>Benchmarked against electrochromic and OLED alternatives.</li>
+                            </ul>
+                        </div>
+                        <!-- 11 -->
+                        <div class="patent-item">
+                            <span class="patent-badge badge-filed">Pending</span>
+                            <div class="patent-title">Self Healing Coating</div>
+                            <div class="patent-meta">Filed Jun 27, 2025</div>
+                            <ul class="patent-bullet">
+                                <li>Polyurethane‑acrylate matrix for multi‑cycle healing under 207–222 nm.</li>
+                                <li>Achieved rapid, safe activation without heat or solvents.</li>
+                            </ul>
+                        </div>
+                        <!-- 12 -->
+                        <div class="patent-item">
+                            <span class="patent-badge badge-filed">In Progress</span>
+                            <div class="patent-title">Portable UV PAI Device</div>
+                            <div class="patent-meta">Filing In Progress</div>
+                            <ul class="patent-bullet">
+                                <li>UV‑PAI system targeting high‑resolution subcellular analysis.</li>
+                                <li>Built AI pipeline for rapid classification.</li>
+                            </ul>
+                        </div>
+                         <!-- 13 -->
+                         <div class="patent-item">
+                            <span class="patent-badge badge-filed">In Progress</span>
+                            <div class="patent-title">Solar Panel UV System</div>
+                            <div class="patent-meta">Filing In Progress</div>
+                            <ul class="patent-bullet">
+                                <li>UV‑enabled strategy to limit biofilm on solar glass.</li>
+                                <li>Focused on protecting effective irradiance and long‑term output.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Patent 3 -->
-                <div class="patent-item">
-                    <span class="patent-badge badge-filed">Filed</span>
-                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">VR Headset Sterilization Stand</h3>
-                    <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;">App #63/652,425</div>
-                    <p style="margin-bottom: 0;">
-                        Dual-function stand that charges VR headsets while blasting contact surfaces with targeted UV-C light for hygiene.
-                    </p>
-                </div>
-
-                 <!-- Patent 4 -->
-                 <div class="patent-item">
-                    <span class="patent-badge badge-filed">Filed</span>
-                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Automotive Photocatalytic Purifier</h3>
-                    <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;">App #63/652,425</div>
-                    <p style="margin-bottom: 0;">
-                        TiO₂ photocatalytic oxidation system for EVs, utilizing <390nm UV-LEDs to purify cabin air and preserve perishables.
-                    </p>
-                </div>
             </div>
         </div>
 
         <!-- TAB 6: PERSONALITY -->
         <div id="tab6" class="tab-content">
-            <div class="card spotlight-card">
-                <h2 class="section-title"><i class="fas fa-user-astronaut"></i> The Person Behind the Engineer</h2>
+            <div class="card">
+                <h2 class="section-title"><i class="fas fa-user-astronaut"></i> The Person</h2>
                 
-                <div class="skill-grid">
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-chess-knight"></i></div>
-                        <div class="skill-content">
-                            <strong>Systems-Level Visionary</strong>
-                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; margin-bottom: 0;">
-                                I don't just solve immediate errors; I build systems to prevent them. From "Root Cause" to "Corrective Action," I think 3 steps ahead.
-                            </p>
+                <div class="persona-grid">
+                    <!-- Trait 1: The Bridge -->
+                    <div class="persona-card">
+                        <div class="persona-icon"><i class="fas fa-project-diagram"></i></div>
+                        <h3 class="persona-title">The Cross-Functional Bridge</h3>
+                        <p class="persona-text">
+                            I thrive at the intersection of R&D and Manufacturing. My strength lies in translating theoretical physics into actionable SOPs for technicians, ensuring design intent survives the jump to mass production.
+                        </p>
+                        <div class="persona-params">
+                            <div class="param-row"><span>Communication</span> <span class="param-val">Technical ⟷ Layman</span></div>
+                            <div class="param-row"><span>Focus</span> <span class="param-val">Integration</span></div>
                         </div>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-rocket"></i></div>
-                        <div class="skill-content">
-                            <strong>Innovation & Agility</strong>
-                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; margin-bottom: 0;">
-                                Like Tony Stark, I believe in rapid iteration. "Run before you can walk" means prototyping fast, failing safely, and scaling the perfect solution.
-                            </p>
+
+                    <!-- Trait 2: The Automator -->
+                    <div class="persona-card">
+                        <div class="persona-icon"><i class="fas fa-robot"></i></div>
+                        <h3 class="persona-title">The Relentless Automator</h3>
+                        <p class="persona-text">
+                            If I have to do it more than three times, I write a script for it. I believe human intelligence should be spent on solving novel problems, not repeating manual measurements.
+                        </p>
+                        <div class="persona-params">
+                            <div class="param-row"><span>Tools</span> <span class="param-val">Python / LabVIEW</span></div>
+                            <div class="param-row"><span>Goal</span> <span class="param-val">Efficiency</span></div>
                         </div>
                     </div>
-                     <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-users-cog"></i></div>
-                        <div class="skill-content">
-                            <strong>The Force Multiplier</strong>
-                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; margin-bottom: 0;">
-                                I empower teams. By creating clear documentation and training technicians, I ensure that knowledge scales and operations run without single points of failure.
-                            </p>
+
+                    <!-- Trait 3: The Debugger -->
+                    <div class="persona-card">
+                        <div class="persona-icon"><i class="fas fa-bug"></i></div>
+                        <h3 class="persona-title">The Root-Cause Hunter</h3>
+                        <p class="persona-text">
+                            I don't treat symptoms; I cure diseases. Whether it's a 5-Why analysis or an 8D report, I dig until I find the fundamental physics failure driving the issue.
+                        </p>
+                        <div class="persona-params">
+                            <div class="param-row"><span>Methodology</span> <span class="param-val">First Principles</span></div>
+                            <div class="param-row"><span>Tolerance</span> <span class="param-val">Zero-Defect</span></div>
                         </div>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-shield-alt"></i></div>
-                        <div class="skill-content">
-                            <strong>Zero-Defect Mindset</strong>
-                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; margin-bottom: 0;">
-                                Reliability isn't an afterthought. Whether it's burn-in testing or detailed DFx input, I engineer products to survive the real world.
-                            </p>
+
+                    <!-- Trait 4: The Inventor -->
+                    <div class="persona-card">
+                        <div class="persona-icon"><i class="fas fa-lightbulb"></i></div>
+                        <h3 class="persona-title">The Practical Inventor</h3>
+                        <p class="persona-text">
+                            My 13+ patents aren't just concepts; they are engineering solutions to real-world gaps I identified in the market. I see problems as invitations to innovate.
+                        </p>
+                        <div class="persona-params">
+                            <div class="param-row"><span>Output</span> <span class="param-val">IP & Products</span></div>
+                            <div class="param-row"><span>Style</span> <span class="param-val">Iterative</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Values Section -->
+                <div style="margin-top: 3rem;">
+                    <h3 style="font-size: 1.2rem; font-family: 'Playfair Display', serif; margin-bottom: 1rem; color: #1e293b;">System Core Values</h3>
+                    <div class="two-column-grid">
+                        <div style="display:flex; gap:1rem; align-items:flex-start;">
+                            <i class="fas fa-check-circle" style="color:var(--primary-blue); margin-top:5px;"></i>
+                            <div>
+                                <strong style="display:block; margin-bottom:0.25rem;">Integrity in Data</strong>
+                                <span style="font-size:0.9rem; color:#64748b;">Data doesn't lie, but interpretation can. I prioritize transparent, raw data analysis over convenient narratives.</span>
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:1rem; align-items:flex-start;">
+                            <i class="fas fa-check-circle" style="color:var(--primary-blue); margin-top:5px;"></i>
+                            <div>
+                                <strong style="display:block; margin-bottom:0.25rem;">Extreme Ownership</strong>
+                                <span style="font-size:0.9rem; color:#64748b;">From the initial schematic to the final field deployment, I take full responsibility for the product's performance.</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </main>
 </div>
 
 <script>
-    // Tab Switching Logic
+    // Standard Tab Logic
     function openTab(evt, tabName) {
         var i, tabcontent, tablinks;
-        
-        // Hide all tab content
         tabcontent = document.getElementsByClassName("tab-content");
         for (i = 0; i < tabcontent.length; i++) {
             tabcontent[i].classList.remove("active");
+            tabcontent[i].style.display = "none"; 
         }
-
-        // Remove active class from buttons
         tablinks = document.getElementsByClassName("nav-btn");
         for (i = 0; i < tablinks.length; i++) {
             tablinks[i].classList.remove("active");
         }
-
-        // Show specific tab
-        document.getElementById(tabName).classList.add("active");
-        evt.currentTarget.classList.add("active");
-
-        // Trigger Metric Animation if tab has metrics
-        if(tabName === 'tab2') {
-            runMetricAnimation();
+        
+        const selected = document.getElementById(tabName);
+        if(selected) {
+            selected.style.display = "block";
+            // Allow reflow for opacity transition
+            setTimeout(() => selected.classList.add("active"), 10);
+            
+            // Check for timelines
+            if(tabName === 'tab3' || tabName === 'tab-projects') {
+                setTimeout(() => initTimelineAnim(tabName), 50);
+            }
         }
+        
+        evt.currentTarget.classList.add("active");
+    }
 
-        // Mobile UX: Scroll to top of content area smoothly
-        if (window.innerWidth <= 1024) {
-            const contentArea = document.querySelector('.content-area');
-            const offset = 80; 
-            const elementPosition = contentArea.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - offset;
+    // Timeline Animation Logic (Shared)
+    let activeTimelineContainer = null;
+    let activeScrollLine = null;
 
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth"
-            });
+    function initTimelineAnim(tabName) {
+        // Reset
+        activeTimelineContainer = null;
+        activeScrollLine = null;
+
+        const tab = document.getElementById(tabName);
+        if(tab) {
+            activeTimelineContainer = tab.querySelector('.timeline-container');
+            activeScrollLine = tab.querySelector('.timeline-line-progress');
+            if(activeTimelineContainer) {
+                updateTimeline(); // Initial draw
+            }
         }
     }
 
-    // --- WOW FACTOR: SPOTLIGHT MOUSE TRACKING ---
-    const cards = document.querySelectorAll('.spotlight-card');
-    document.addEventListener('mousemove', e => {
-        cards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
+    function updateTimeline() {
+        if(!activeTimelineContainer) return;
+        
+        const nodes = activeTimelineContainer.querySelectorAll('.timeline-node');
+        const containerRect = activeTimelineContainer.getBoundingClientRect();
+        
+        // Reading Line ~35% down viewport
+        const readY = window.innerHeight * 0.35;
+        
+        // Calculate fill height
+        // Distance from container top to reading line
+        let height = readY - containerRect.top;
+        if(height < 0) height = 0;
+        if(height > containerRect.height) height = containerRect.height;
+        
+        if(activeScrollLine) {
+            activeScrollLine.style.height = height + 'px';
+        }
+
+        // Active State Logic
+        nodes.forEach(node => {
+            const rect = node.getBoundingClientRect();
+            // If the node's top is above the reading line, it's active
+            // Or if we are currently reading it (top is near readY)
+            
+            // Simple logic: If we've scrolled past the start of the node, activate it.
+            // Node start relative to viewport is rect.top
+            
+            if (rect.top <= readY + 100) { 
+                node.classList.add('active-node');
+                node.style.opacity = '1';
+                node.style.transform = 'scale(1.02)';
+            } else {
+                node.classList.remove('active-node');
+                node.style.opacity = '0.5';
+                node.style.transform = 'scale(0.98)';
+            }
         });
+    }
+
+    window.addEventListener('scroll', () => {
+        requestAnimationFrame(updateTimeline);
     });
 
-    // --- WOW FACTOR: LIVE METRIC COUNTER ---
-    let metricsAnimated = false;
-    function runMetricAnimation() {
-        if(metricsAnimated) return;
-        
-        const counters = document.querySelectorAll('.count-up');
-        counters.forEach(counter => {
-            const target = +counter.getAttribute('data-target');
-            const prefix = counter.getAttribute('data-prefix') || '';
-            const suffix = counter.getAttribute('data-suffix') || '';
-            const duration = 1500; // ms
-            const increment = target / (duration / 16); // 60fps
-            
-            let current = 0;
-            const updateCount = () => {
-                current += increment;
-                if (current < target) {
-                    counter.innerText = prefix + Math.ceil(current) + suffix;
-                    requestAnimationFrame(updateCount);
-                } else {
-                    counter.innerText = prefix + target + suffix;
-                }
-            };
-            updateCount();
-        });
-        metricsAnimated = true;
-    }
-
-    // Copy Email to Clipboard
+    // Copy Email
     function copyEmail() {
         const email = "Piyush.sharma4698@gmail.com";
         navigator.clipboard.writeText(email).then(() => {
-            const btn = document.querySelector('.copy-btn');
-            const originalIcon = btn.innerHTML;
-            
-            // Visual feedback
-            btn.innerHTML = '<i class="fas fa-check"></i>';
-            btn.style.color = '#10b981';
-            
-            setTimeout(() => {
-                btn.innerHTML = originalIcon;
-                btn.style.color = '';
-            }, 2000);
-        });
-    }
-
-    // Floating Particles (Lightweight JS implementation)
-    document.addEventListener("DOMContentLoaded", function() {
-        const container = document.getElementById('particles-js');
-        const particleCount = 30;
-
-        for (let i = 0; i < particleCount; i++) {
-            createParticle(container);
-        }
-    });
-
-    function createParticle(container) {
-        const circle = document.createElement('div');
-        const size = Math.random() * 4 + 2;
-        
-        circle.style.width = `${size}px`;
-        circle.style.height = `${size}px`;
-        circle.style.background = `rgba(15, 98, 254, ${Math.random() * 0.2})`; /* Adjusted to primary blue */
-        circle.style.position = 'absolute';
-        circle.style.borderRadius = '50%';
-        circle.style.left = `${Math.random() * 100}%`;
-        circle.style.top = `${Math.random() * 100}%`;
-        circle.style.transition = 'transform 10s linear, opacity 5s ease';
-        
-        container.appendChild(circle);
-
-        animateParticle(circle);
-    }
-
-    function animateParticle(circle) {
-        const xMove = (Math.random() - 0.5) * 100;
-        const yMove = (Math.random() - 0.5) * 100;
-        
-        circle.animate([
-            { transform: `translate(0, 0)`, opacity: 0.1 },
-            { transform: `translate(${xMove}px, ${yMove}px)`, opacity: 0.8 },
-            { transform: `translate(0, 0)`, opacity: 0.1 }
-        ], {
-            duration: 10000 + Math.random() * 10000,
-            iterations: Infinity,
-            direction: 'alternate',
-            easing: 'ease-in-out'
+            alert("Email copied to clipboard!");
         });
     }
 </script>
